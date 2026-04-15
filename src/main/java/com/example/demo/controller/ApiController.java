@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,5 +29,10 @@ public class ApiController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
     }
 }
